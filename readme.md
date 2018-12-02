@@ -3,6 +3,7 @@
 Tag          | Version
 :------------|:----------
  1.0.0       | Start
+ 1.0.1       | Fix build
  
 ## Versions
 Main Package  | Version
