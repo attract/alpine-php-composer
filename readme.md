@@ -3,7 +3,7 @@
 Tag          | Version
 :------------|:----------
  1.0.0       | Start
- 1.0.3       | Fix build
+ 1.0.4       | Fix build
  
 ## Versions
 Main Package  | Version
@@ -14,3 +14,4 @@ Main Package  | Version
  nano       | 2.9.8
  git       | 2.18.1
  supervisor       | 3.3.4
+ postgresql-dev       | 10.5
