@@ -4,6 +4,7 @@ Tag          | Version
 :------------|:----------
  1.0.0       | Start
  1.0.5       | Fix build
+ 2.0.6       | PHP 7.3.2 alpine 3.9
  
 ## Versions
 Main Package  | Version
