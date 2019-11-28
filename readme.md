@@ -5,6 +5,7 @@ Tag          | Version
  1.0.0       | Start
  1.0.5       | Fix build
  2.0.8       | PHP 7.3.2 alpine 3.9
+ 2.0.9       | add pdo_dblib
  
 ## Versions
 Main Package  | Version
