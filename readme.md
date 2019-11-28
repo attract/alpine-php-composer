@@ -10,7 +10,7 @@ Tag          | Version
 ## Versions
 Main Package  | Version
 :-------------|:----------
- Alpine       | 3.8
+ Alpine       | 3.9
  php(include GD, Iconv)       | 7.3.2
  hirak/prestissimo       | ^0.3
  nano       | 2.9.8
