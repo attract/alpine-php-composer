@@ -4,7 +4,7 @@ MAINTAINER Amondar-SO
 
 RUN apk update && apk add --no-cache  bash grep nano coreutils curl \
     libpng-dev libjpeg-turbo-dev freetype-dev libmcrypt postgresql-dev libxml2-dev libzip-dev \
-    composer supervisor git freetds
+    composer supervisor git freetds freetds-dev
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) json mbstring zip pdo pdo_mysql mysqli pdo_pgsql pdo_dblib iconv gd exif xml opcache \
