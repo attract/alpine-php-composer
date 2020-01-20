@@ -2,7 +2,7 @@ FROM php:7.4.1-fpm-alpine3.11
 
 MAINTAINER Amondar-SO
 
-RUN apk update && apk add --no-cache  bash grep nano coreutils curl \
+RUN apk update && apk add --no-cache  bash grep nano coreutils curl oniguruma-dev \
     libpng-dev libjpeg-turbo-dev freetype-dev libmcrypt postgresql-dev libxml2-dev libzip-dev \
     composer supervisor git freetds freetds-dev \
     icu icu-dev
