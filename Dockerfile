@@ -7,7 +7,7 @@ RUN apk update && apk add --no-cache  bash grep nano coreutils curl \
     composer supervisor git freetds freetds-dev \
     icu icu-dev
 
-RUN docker-php-ext-configure gd --with-png=/usr/include/ --with-jpeg=/usr/include/ --with-freetype=/usr/include/ \
+RUN docker-php-ext-configure gd --with-png --with-jpeg --with-freetype \
     && docker-php-ext-configure intl \
     && docker-php-ext-install -j$(nproc) json mbstring zip pdo pdo_mysql mysqli pdo_pgsql pdo_dblib iconv gd exif xml opcache intl \
     && composer global require "hirak/prestissimo:^0.3"
