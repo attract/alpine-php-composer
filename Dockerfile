@@ -1,4 +1,4 @@
-FROM php:7.3.2-fpm-alpine3.9
+FROM 7.4.1-cli-alpine3.11
 
 MAINTAINER Amondar-SO
 
