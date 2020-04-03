@@ -8,6 +8,7 @@ Tag          | Version
  2.0.10      | add pdo_dblib + freetds
  2.0.13      | add ext-intl 
  3.0.0       | PHP 7.4.1 + alpine 3.11  
+ 3.0.5       | PHP 7.4.1 + alpine 3.11  
  
 ## Versions
 Main Package  | Version
