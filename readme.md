@@ -9,7 +9,7 @@ Tag          | Version
  2.0.13      | add ext-intl 
  3.0.0       | PHP 7.4.1 + alpine 3.11  
  3.0.5       | PHP 7.4.1 + alpine 3.11  
- 3.0.6       | PHP 7.4.13 + alpine 3.12 
+ 3.0.7      | PHP 7.4.13 + alpine 3.12 
  
 ## Versions
 Main Package  | Version
