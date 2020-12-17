@@ -9,6 +9,7 @@ Tag          | Version
  2.0.13      | add ext-intl 
  3.0.0       | PHP 7.4.1 + alpine 3.11  
  3.0.5       | PHP 7.4.1 + alpine 3.11  
+ 3.0.6       | PHP 7.4.13 + alpine 3.12 
  
 ## Versions
 Main Package  | Version
@@ -20,3 +21,4 @@ Main Package  | Version
  git       | 2.24
  supervisor       | 4.1.0
  postgresql-dev       | 12.1
+composer      | 2.0
