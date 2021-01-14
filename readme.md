@@ -10,6 +10,7 @@ Tag          | Version
  3.0.0       | PHP 7.4.1 + alpine 3.11  
  3.0.5       | PHP 7.4.1 + alpine 3.11  
  3.0.7      | PHP 7.4.13 + alpine 3.12 
+ 3.0.8      | PHP 7.4.14 + alpine 3.12
  
 ## Versions
 Main Package  | Version
@@ -22,3 +23,4 @@ Main Package  | Version
  supervisor       | 4.1.0
  postgresql-dev       | 12.1
 composer      | 2.0
+bcmath     | included
