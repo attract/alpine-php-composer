@@ -11,6 +11,7 @@ Tag          | Version
  3.0.5       | PHP 7.4.1 + alpine 3.11  
  3.0.7      | PHP 7.4.13 + alpine 3.12 
  3.0.8      | PHP 7.4.14 + alpine 3.12
+ 3.0.9      | PHP 7.4.20 + alpine 3.13
  
 ## Versions
 Main Package  | Version
