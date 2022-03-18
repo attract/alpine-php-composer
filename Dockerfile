@@ -9,7 +9,9 @@ RUN apk update && apk add --no-cache  bash grep nano coreutils curl oniguruma-de
 
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype \
     && docker-php-ext-configure intl \
-    && docker-php-ext-install -j$(nproc) json mbstring zip pdo pdo_mysql mysqli pdo_pgsql pdo_dblib iconv gd exif xml opcache intl bcmath imagick
+    && docker-php-ext-install -j$(nproc) json mbstring zip pdo pdo_mysql mysqli pdo_pgsql pdo_dblib iconv gd exif xml opcache intl bcmath
+
+RUN pecl install imagick && docker-php-ext-enable imagick
 
 
 EXPOSE 80 9000
