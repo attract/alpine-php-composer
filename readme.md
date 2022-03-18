@@ -12,6 +12,7 @@ Tag          | Version
  3.0.7      | PHP 7.4.13 + alpine 3.12 
  3.0.8      | PHP 7.4.14 + alpine 3.12
  3.0.9      | PHP 7.4.20 + alpine 3.13
+ 3.0.10      | add Imagick into php
  
 ## Versions
 Main Package  | Version
