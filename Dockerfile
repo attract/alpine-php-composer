@@ -10,7 +10,7 @@ RUN apk update && apk add --no-cache  bash htop grep nano coreutils curl oniguru
 ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
 
 RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions imagick gd json mbstring zip pdo pdo_mysql mysqli pdo_pgsql pdo_dblib iconv gd exif xml opcache intl bcmath  && \
+    install-php-extensions imagick gd json mbstring zip pdo pdo_mysql mysqli pdo_pgsql pdo_dblib iconv gd exif xml opcache intl bcmath
 
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype && \
     docker-php-ext-configure intl
