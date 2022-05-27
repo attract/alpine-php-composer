@@ -2,7 +2,7 @@
 
 Tag          | Version
 :------------|:----------
- 1.0.0       | Start
+ 4.0.0       | PHP 8
  
 ## Versions
 
