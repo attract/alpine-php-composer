@@ -3,9 +3,10 @@
 Tag          | Version
 :------------|:----------
  4.0.2       | PHP 8
+ 4.1.0       | PHP 8.1
  
 ## Versions
 
 Main Package  | Version
 :-------------|:----------
- Alpine       | 3.8
+ Alpine       | 3.16
