@@ -14,7 +14,8 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 
 ## Install PHP packages
 RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions imagick gd json mbstring zip pdo pdo_mysql mysqli pdo_pgsql pdo_dblib iconv exif xml opcache intl bcmath fileinfo
+    install-php-extensions imagick gd json mbstring zip pdo pdo_mysql mysqli  \
+    pdo_pgsql pdo_dblib iconv exif xml opcache intl bcmath fileinfo pcntl
 
 ## Configure image processing libraries
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype && \
