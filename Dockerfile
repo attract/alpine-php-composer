@@ -1,7 +1,5 @@
 FROM php:8.3-fpm-alpine3.19
 
-MAINTAINER Amondar-SO
-
 
 ## Install required packages
 RUN apk update && \
