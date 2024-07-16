@@ -5,7 +5,7 @@ FROM php:8.3-fpm-alpine3.19
 RUN apk update && \
     apk add --no-cache  bash htop grep nano coreutils curl oniguruma-dev \
     libpng-dev libjpeg-turbo-dev freetype-dev libmcrypt postgresql-dev libxml2-dev libzip-dev imagemagick-dev libtool \
-    supervisor git freetds freetds-dev icu icu-dev
+    supervisor git freetds freetds-dev icu icu-dev supercronic
 
 ## Install install-php-extensions package
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
