@@ -34,7 +34,7 @@ RUN curl -fsSLO "$SUPERCRONIC_URL" \
 ## Install composer and open swoole
 RUN curl -sfL https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     chmod +x /usr/bin/composer                                                                     && \
-    composer self-update --clean-backups 2.6.6                                    && \
+    composer self-update --clean-backups 2.8.8                                    && \
     apk add --no-cache linux-headers && \
     apk add --no-cache libstdc++ postgresql-dev libpq && \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS curl-dev openssl-dev pcre-dev pcre2-dev zlib-dev && \
