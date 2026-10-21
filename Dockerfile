@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-alpine3.21
+FROM php:8.3.36-fpm-alpine3.23
 
 
 ## Install required packages
