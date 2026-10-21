@@ -1,4 +1,4 @@
-FROM php:8.4-fpm-alpine3.21
+FROM php:8.4.27-fpm-alpine3.23
 
 
 ## Install required packages
@@ -8,11 +8,11 @@ RUN apk update && \
     supervisor git freetds freetds-dev icu icu-dev
 
 ## Install install-php-extensions package
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/download/2.9.25/install-php-extensions /usr/local/bin/
 
 ## Install PHP packages
 RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions imagick gd json mbstring zip pdo pdo_mysql mysqli  \
+    install-php-extensions imagick-3.8.1 gd json mbstring zip pdo pdo_mysql mysqli  \
     pdo_pgsql pdo_dblib iconv exif xml opcache intl bcmath fileinfo pcntl
 
 ## Configure image processing libraries
