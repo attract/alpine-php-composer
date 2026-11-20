@@ -1,14 +1,15 @@
-FROM php:8.4.27-fpm-alpine3.23
+FROM php:8.5.13-fpm-alpine3.23
 
 
 ## Install required packages
 RUN apk update && \
     apk add --no-cache  bash htop grep nano coreutils curl oniguruma-dev \
     libpng-dev libjpeg-turbo-dev freetype-dev libmcrypt postgresql-dev libxml2-dev libzip-dev imagemagick-dev libtool \
-    supervisor git freetds freetds-dev icu icu-dev
+    supervisor git freetds freetds-dev icu icu-dev py3-pip && \
+    pip install --no-cache-dir --break-system-packages setuptools==83.0.0
 
 ## Install install-php-extensions package
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/download/2.9.25/install-php-extensions /usr/local/bin/
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/download/2.13.2/install-php-extensions /usr/local/bin/
 
 ## Install PHP packages
 RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
@@ -21,8 +22,8 @@ RUN docker-php-ext-configure gd --with-jpeg --with-freetype && \
 
 ######### Install supercronic
 # Latest releases available at https://github.com/aptible/supercronic/releases
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.33/supercronic-linux-amd64 \
-    SUPERCRONIC_SHA1SUM=71b0d58cc53f6bd72cf2f293e09e294b79c666d8 \
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.51/supercronic-linux-amd64 \
+    SUPERCRONIC_SHA1SUM=1692066e350a88ff4d7d6474fe3c7a6c41ec5e89 \
     SUPERCRONIC=supercronic-linux-amd64
 
 RUN curl -fsSLO "$SUPERCRONIC_URL" \
@@ -34,14 +35,14 @@ RUN curl -fsSLO "$SUPERCRONIC_URL" \
 ## Install composer and open swoole
 RUN curl -sfL https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     chmod +x /usr/bin/composer                                                                     && \
-    composer self-update --clean-backups 2.8.8                                    && \
+    composer self-update --clean-backups 2.11.2                                    && \
     apk add --no-cache linux-headers && \
     apk add --no-cache libstdc++ postgresql-dev libpq && \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS curl-dev openssl-dev pcre-dev pcre2-dev zlib-dev && \
     docker-php-ext-install sockets && \
     docker-php-source extract && \
     mkdir /usr/src/php/ext/openswoole && \
-    curl -sfL https://github.com/openswoole/ext-openswoole/archive/v25.2.0.tar.gz -o openswoole.tar.gz && \
+    curl -sfL https://github.com/openswoole/ext-openswoole/archive/v26.11.0.tar.gz -o openswoole.tar.gz && \
     tar xfz openswoole.tar.gz --strip-components=1 -C /usr/src/php/ext/openswoole && \
     docker-php-ext-configure openswoole \
         --enable-http2   \
