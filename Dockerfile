@@ -60,3 +60,6 @@ RUN apk del --no-cache nano git coreutils tar imagemagick-pdf imagemagick-raw im
         libxml2-dev libzip-dev freetds-dev icu-dev oniguruma-dev libtool linux-headers && \
     apk add --no-cache imagemagick-libs libpng libjpeg-turbo freetype libpq libxml2 libzip freetds icu-libs oniguruma && \
     php -r 'exit(extension_loaded("imagick") && extension_loaded("gd") && extension_loaded("intl") && extension_loaded("pdo_pgsql") && extension_loaded("pdo_dblib") && extension_loaded("openswoole") ? 0 : 1);'
+
+## expat 2.11.0 (CVE-2026-124317, CVE-2026-128241, CVE-2026-134703) is released only in Alpine edge; same libexpat.so.1 ABI, nothing to rebuild.
+RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/main 'libexpat>=2.11.0'
