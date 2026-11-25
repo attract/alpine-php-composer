@@ -63,3 +63,7 @@ RUN apk del --no-cache nano git coreutils tar imagemagick-pdf imagemagick-raw im
 
 ## expat 2.11.0 (CVE-2026-124317, CVE-2026-128241, CVE-2026-134703) is released only in Alpine edge; same libexpat.so.1 ABI, nothing to rebuild.
 RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/main 'libexpat>=2.11.0'
+
+## ImageMagick: refuse XML-based and script coders (SVG through librsvg/libxml2, MSL, MVG, XPS) and remote URLs; raster coders and text drawing stay.
+RUN sed -i 's#</policymap>#  <policy domain="coder" rights="none" pattern="{SVG,SVGZ,MSVG,RSVG,MSL,MVG,XPS,TEXT}" />\n  <policy domain="delegate" rights="none" pattern="*" />\n  <policy domain="path" rights="none" pattern="@*" />\n  <policy domain="module" rights="none" pattern="{URL,HTTP,HTTPS,FTP}" />\n</policymap>#' /etc/ImageMagick-7/policy.xml && \
+    php -r '$i = new Imagick(); $i->newImage(2, 2, "white"); $i->setImageFormat("png"); exit(strlen($i->getImageBlob()) > 0 ? 0 : 1);'
