@@ -52,3 +52,11 @@ RUN curl -sfL https://getcomposer.org/installer | php -- --install-dir=/usr/bin 
     apk del .build-deps
 
 EXPOSE 80 9000 8000
+
+## Drop build-only and unused packages: the server needs only the runtime libraries of the PHP extensions.
+## ImageMagick keeps its jpeg, png, webp, heic, tiff, jp2 and jxl coders; PDF, RAW and SVG coders are dropped with ghostscript, cups and avahi.
+RUN apk del --no-cache nano git coreutils tar imagemagick-pdf imagemagick-raw imagemagick-svg imagemagick-pango \
+        ghostscript cups-libs avahi-libs jbig2dec libraw librsvg glycin-svg pango cairo imagemagick-dev libpng-dev libjpeg-turbo-dev freetype-dev postgresql-dev \
+        libxml2-dev libzip-dev freetds-dev icu-dev oniguruma-dev libtool linux-headers && \
+    apk add --no-cache imagemagick-libs libpng libjpeg-turbo freetype libpq libxml2 libzip freetds icu-libs oniguruma && \
+    php -r 'exit(extension_loaded("imagick") && extension_loaded("gd") && extension_loaded("intl") && extension_loaded("pdo_pgsql") && extension_loaded("pdo_dblib") && extension_loaded("openswoole") ? 0 : 1);'
