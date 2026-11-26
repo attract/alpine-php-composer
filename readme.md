@@ -7,6 +7,7 @@
  4.1.1 | PHP 8.1.7            
  4.1.5 | PHP 8.2              
  4.2.4 | PHP 8.3 + openswoole 
+ 5.1.0 | PHP 8.4.28 + openswoole 26.11.1 + Alpine 3.24
 
 ## Versions
 

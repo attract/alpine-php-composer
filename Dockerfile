@@ -2,7 +2,7 @@
 FROM golang:1.27.4-alpine3.24 AS supercronic
 RUN CGO_ENABLED=0 GOBIN=/out go install github.com/aptible/supercronic@v0.2.51
 
-FROM php:8.4.28-fpm-alpine3.23
+FROM php:8.4.28-fpm-alpine3.24
 
 
 ## Install required packages
@@ -37,7 +37,7 @@ RUN curl -sfL https://getcomposer.org/installer | php -- --install-dir=/usr/bin 
     docker-php-ext-install sockets && \
     docker-php-source extract && \
     mkdir /usr/src/php/ext/openswoole && \
-    curl -sfL https://github.com/openswoole/ext-openswoole/archive/v25.2.0.tar.gz -o openswoole.tar.gz && \
+    curl -sfL https://github.com/openswoole/ext-openswoole/archive/v26.11.1.tar.gz -o openswoole.tar.gz && \
     tar xfz openswoole.tar.gz --strip-components=1 -C /usr/src/php/ext/openswoole && \
     docker-php-ext-configure openswoole \
         --enable-http2   \
