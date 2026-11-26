@@ -1,14 +1,18 @@
-FROM php:8.4.27-fpm-alpine3.23
+######### supercronic built with a patched Go toolchain (the release binary ships an older Go stdlib)
+FROM golang:1.27.4-alpine3.24 AS supercronic
+RUN CGO_ENABLED=0 GOBIN=/out go install github.com/aptible/supercronic@v0.2.51
+
+FROM php:8.4.28-fpm-alpine3.23
 
 
 ## Install required packages
-RUN apk update && \
+RUN apk update && apk upgrade --no-cache && \
     apk add --no-cache  bash htop grep nano coreutils curl oniguruma-dev \
     libpng-dev libjpeg-turbo-dev freetype-dev libmcrypt postgresql-dev libxml2-dev libzip-dev imagemagick-dev libtool \
     supervisor git freetds freetds-dev icu icu-dev
 
 ## Install install-php-extensions package
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/download/2.9.25/install-php-extensions /usr/local/bin/
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/download/2.13.4/install-php-extensions /usr/local/bin/
 
 ## Install PHP packages
 RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
@@ -20,21 +24,13 @@ RUN docker-php-ext-configure gd --with-jpeg --with-freetype && \
     docker-php-ext-configure intl
 
 ######### Install supercronic
-# Latest releases available at https://github.com/aptible/supercronic/releases
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.33/supercronic-linux-amd64 \
-    SUPERCRONIC_SHA1SUM=71b0d58cc53f6bd72cf2f293e09e294b79c666d8 \
-    SUPERCRONIC=supercronic-linux-amd64
-
-RUN curl -fsSLO "$SUPERCRONIC_URL" \
- && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
- && chmod +x "$SUPERCRONIC" \
- && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
- && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
+COPY --from=supercronic /out/supercronic /usr/local/bin/supercronic-linux-amd64
+RUN ln -s /usr/local/bin/supercronic-linux-amd64 /usr/local/bin/supercronic
 
 ## Install composer and open swoole
 RUN curl -sfL https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     chmod +x /usr/bin/composer                                                                     && \
-    composer self-update --clean-backups 2.8.8                                    && \
+    composer self-update --clean-backups 2.11.3                                    && \
     apk add --no-cache linux-headers && \
     apk add --no-cache libstdc++ postgresql-dev libpq && \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS curl-dev openssl-dev pcre-dev pcre2-dev zlib-dev && \
